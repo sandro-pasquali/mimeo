@@ -2,19 +2,50 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Cabal</title>
+		<title>Mimeo</title>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script src="mimeo.js"></script>
 		<script type="text/javascript">
 
 			$(function() {
-				$("#targ").data("foo", "bar");
+
+				//	Initial.
+				//
+				$("#targ").data({
+					title: "My title",
+					name: "My name"
+				});
+
+				//	Change in a second.
+				//
+				setTimeout(function() {
+					$("#targ").data({
+						title: "Another title",
+						name: "Another name"
+					});
+				}, 1000);
+
+
+				//	Absence of #title will cause conditional to fail.
+				//
+				setTimeout(function() {
+					$("#targ").removeData("title");
+				}, 2000);
+
 			});
 
 		</script>
 	</head>
 	<body>
-		<div id="targ">Here</div>
+		<div id="targ" data-template="my-template">Here</div>
+
+		<script id="my-template" type="text/x-mimeo">
+			{{? binding.title }}
+				<div>Title: {{= binding.title }} </div>
+			{{?}}
+			<div>Name: {{= binding.name}} </div>
+		</script>
+
 	</body>
 </html>
