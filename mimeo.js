@@ -177,6 +177,8 @@
 		return methRes;
 	};
 
+	//	Ask the template to re-render for this target. No changes are made to the data.
+	//
 	$.fn.replayData = function() {
 		update(null, this, 1);
 		return this;
