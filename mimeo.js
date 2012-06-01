@@ -177,6 +177,11 @@
 		return methRes;
 	};
 
+	$.fn.replayData = function() {
+		update(null, this, 1);
+		return this;
+	};
+
 	return $;
 
 })(jQuery);
